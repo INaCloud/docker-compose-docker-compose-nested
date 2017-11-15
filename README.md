@@ -51,13 +51,13 @@ $ docker-compose -f conf/docker/docker-compose.network.yml up
     - expose ports
     - issue runtime commands (eg. 'start')
 
-*NOTE: All docker-compose actions are executed relative to the path location of the docker-compose.yml file or its specific build context value.*
+*__NOTE__: All docker-compose actions are executed relative to the path location of the docker-compose.yml file or its specific build context value.*
 
-*NOTE: All Dockerfile actions are executed relative to the path location of the Dockerfile file.*
+*__NOTE__: All Dockerfile actions are executed relative to the path location of the Dockerfile file.*
 
-*NOTE: You can supply multiple -f configuration files. When you supply multiple files, Compose combines them into a single configuration. Compose builds the configuration in the order you supply the files. Subsequent files override and add to their predecessors.*
+*__NOTE__: You can supply multiple -f configuration files. When you supply multiple files, Compose combines them into a single configuration. Compose builds the configuration in the order you supply the files. Subsequent files override and add to their predecessors.*
 
-*NOTE: You must provide a unique name for each image your docker-compose file generates. This is based on the service name used in the docker-compose.yml file. Two services of the same name cannot run on the same host, even if defined in different docker-compose files. They will generate image names that conflict in the image listing. Therefore best practice is to use unique names for all running services.*
+*__NOTE__: You must provide a unique name for each image your docker-compose file generates. This is based on the service name used in the docker-compose.yml file. Two services of the same name cannot run on the same host, even if defined in different docker-compose files. They will generate image names that conflict in the image listing. Therefore best practice is to use unique names for all running services.*
 
 
 ## Project Source
