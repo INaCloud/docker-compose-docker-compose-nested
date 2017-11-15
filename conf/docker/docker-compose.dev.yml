@@ -1,0 +1,15 @@
+version: '3'
+services:
+  dev_web:
+    # DEFINE BUILD CONTEXT.
+    build:
+        #context: .
+        context: ../../
+        # DOCKERFILE PATH RELATIVE TO BUILD CONTEXT.
+        #dockerfile: ./conf/docker/Dockerfile.dev
+        dockerfile: ./conf/docker/Dockerfile
+    ports:
+       #MAPPING -> "HOST:CONTAINER"
+     - "50000:8080"
+    container_name: ttg_webapp_dev
+    hostname: ttg_webapp_dev
