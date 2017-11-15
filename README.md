@@ -1,5 +1,5 @@
-
 # Using Dockerfiles with ```docker-compose``` using relative paths
+
 
 ## Project Tree
 ```
@@ -8,9 +8,11 @@
 |_____package.json
 |_____conf
 |_____|_____docker
+|_____|_____|_____Dockerfile
 |_____|_____|_____Dockerfile.dev
 |_____|_____|_____Dockerfile.prod
 |_____|_____|_____docker-compose.dev.yml
+|_____|_____|_____docker-compose.network.yml
 |_____|_____|_____docker-compose.prod.yml
 |_____src
 |_____|_____server.js
@@ -20,11 +22,14 @@
 
 - __README.md__ - The document you are reading.
 - __package.json__ - Defines the dependencies, entry point and startup script for the project.
-- __conf/docker/Dockerfile__ - Builds a container for the project src in ```dev mode```.
-- __conf/docker/docker-compose.yml__ - Orchestrates the instantiation of the containers used in the project in ```dev mode```.
+- __conf/docker/Dockerfile__ - Builds a container for the project src.
+- __conf/docker/Dockerfile.dev__ - Builds a container for the project src in ```dev mode```.
 - __conf/docker/Dockerfile.prod__ - Builds a container for the project src in ```production mode```.
+- __conf/docker/docker-compose.dev.yml__ - Orchestrates the instantiation of the containers used in the project in ```dev mode```.
 - __conf/docker/docker-compose.prod.yml__ - Orchestrates the instantiation of the containers used in the project in ```production``` mode.
+- __conf/docker/docker-compose.network.yml__ - Orchestrates the instantiation of the containers used in the project in ```network``` mode.
 - __src/server.js__ - The actual project src code that executes in the container.
+
 
 ## Workflow Logic
 
@@ -56,6 +61,7 @@ $ docker-compose -f conf/docker/docker-compose.prod.yml up
 *NOTE: You can supply multiple -f configuration files. When you supply multiple files, Compose combines them into a single configuration. Compose builds the configuration in the order you supply the files. Subsequent files override and add to their predecessors.*
 
 *NOTE: You must provide a unique name for each image your docker-compose file generates. This is based on the service name used in the docker-compose.yml file. Two services of the same name cannot run on the same host, even if defined in different docker-compose files. They will generate image names that conflict in the image listing. Therefore best practice is to use unique names for all running services.*
+
 
 ## Project Source
 
