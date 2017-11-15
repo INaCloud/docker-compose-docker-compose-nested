@@ -60,9 +60,8 @@ $ docker-compose -f conf/docker/docker-compose.network.yml up
 *__Note__: You can supply multiple -f configuration files. When you supply multiple files, Compose combines them into a single configuration. Compose builds the configuration in the order you supply the files. Subsequent files override and add to their predecessors.*
 
 ```
+# DEVNOTE: This does not appear to be working correctly still.
 $ docker-compose -f docker-compose.dev.yml -f docker-compose.prod.yml -f docker-compose.network.yml
-
-# This does not appear to be working correctly still.
 ```
 
 *__Note__: You must provide a unique name for each image your docker-compose file generates. This is based on the service name used in the docker-compose.yml file. Two services of the same name cannot run on the same host, even if defined in different docker-compose files. They will generate image names that conflict in the image listing. Therefore best practice is to use unique names for all running services.*
