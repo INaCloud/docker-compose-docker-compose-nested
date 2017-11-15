@@ -1,6 +1,7 @@
 # Using Dockerfiles with ```docker-compose``` using relative paths
 
 ## Project Tree
+
 ```
 .
 |_____README.md
@@ -28,7 +29,6 @@
 - __conf/docker/docker-compose.prod.yml__ - Orchestrates the instantiation of the containers used in the project in ```production``` mode.
 - __conf/docker/docker-compose.network.yml__ - Orchestrates the instantiation of the containers used in the project in ```network``` mode.
 - __src/server.js__ - The actual project src code that executes in the container.
-
 
 ## Workflow Logic
 
@@ -58,7 +58,6 @@ $ docker-compose -f conf/docker/docker-compose.network.yml up
 *__Note__: You can supply multiple -f configuration files. When you supply multiple files, Compose combines them into a single configuration. Compose builds the configuration in the order you supply the files. Subsequent files override and add to their predecessors.*
 
 *__Note__: You must provide a unique name for each image your docker-compose file generates. This is based on the service name used in the docker-compose.yml file. Two services of the same name cannot run on the same host, even if defined in different docker-compose files. They will generate image names that conflict in the image listing. Therefore best practice is to use unique names for all running services.*
-
 
 ## Project Source
 
