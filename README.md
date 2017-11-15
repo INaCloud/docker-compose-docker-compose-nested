@@ -44,6 +44,12 @@ OR
 $ docker-compose -f conf/docker/docker-compose.prod.yml up
 ```
 
+OR
+
+```
+$ docker-compose -f conf/docker/docker-compose.network.yml up
+```
+
 1) The file docker-compose.yml defines the service(s), build context, dockerfile(s) to use, and any other configuration details salient to the specific container(s) running (including args, ports, labels, tags, names, etc.)
 
 1) The Dockerfile specified by the service being containerized by the docker-compose.yml file will now build the container image (layer by layer - caching where possible) and deploy the container once it has succesfully been built and configured. These steps include (but ar enot limited too):
