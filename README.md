@@ -38,7 +38,7 @@ $ docker-compose --project-name ttg -f conf/docker/docker-compose.dev.yml up
 
 $ docker-compose --project-name ttg -f conf/docker/docker-compose.prod.yml up
 
-$ docker-compose --project-name ttg -f conf/docker/docker-compose.network.yml up
+$ docker-compose -f conf/docker/docker-compose.network.yml up
 ```
 
 1) The file docker-compose.yml defines the service(s), build context, dockerfile(s) to use, and any other configuration details salient to the specific container(s) running (including args, ports, labels, tags, names, etc.)
@@ -51,7 +51,7 @@ $ docker-compose --project-name ttg -f conf/docker/docker-compose.network.yml up
     - expose ports
     - issue runtime commands (eg. 'start')
 
-*__Note__: You can specify the project name in the docker-compose command. Default is the name of the folder containing the docker-compose.yml file.*
+*__Note__: You can specify the project name in the docker-compose command. Default is the name of the folder containing the docker-compose.yml file. This will not work with a docker-compose file in which a network has been defined (eg. docker-compose.network.yml).*
 
 *__Note__: All docker-compose actions are executed relative to the path location of the docker-compose.yml file or its specific build context value.*
 
