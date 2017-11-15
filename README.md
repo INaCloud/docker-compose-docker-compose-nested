@@ -60,7 +60,7 @@ $ docker-compose -f conf/docker/docker-compose.network.yml up
 *__Note__: You can supply multiple -f configuration files. When you supply multiple files, Compose combines them into a single configuration. Compose builds the configuration in the order you supply the files. Subsequent files override and add to their predecessors.*
 
 ```
-# DEVNOTE: This does not appear to be working correctly still.
+# DEVNOTE: This does not appear to be working correctly.
 $ docker-compose -f docker-compose.dev.yml -f docker-compose.prod.yml -f docker-compose.network.yml
 ```
 
