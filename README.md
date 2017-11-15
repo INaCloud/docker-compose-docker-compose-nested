@@ -80,7 +80,8 @@ This file defines the metadata for the project app, specifies dependencies, and 
     "start": "node src/server.js"
   },
   "dependencies": {
-    "express": "^4.13.3"
+    "express": "^4.13.3",
+    "ip": "^1.1.5"
   }
 }
 ```
@@ -93,10 +94,13 @@ This is the actuall expresss application used in testing the setup.
 'use strict';
 
 const express = require('express');
+const ip = require('ip');
 
 // Constants
 const PORT = 8080;
-const HOST = '0.0.0.0';
+// const HOST = '0.0.0.0';
+const HOST = ip.address();
+console.log(HOST)
 
 // App
 const app = express();
@@ -108,31 +112,7 @@ app.listen(PORT, HOST);
 console.log(`Running on http://${HOST}:${PORT}`);
 ```
 
-__Dockerfile__
-
-```
-FROM node:boron
-WORKDIR /usr/src/app
-COPY package.json .
-RUN npm install
-COPY . .
-EXPOSE 8000
-CMD [ "npm", "start" ]
-```
-
-__Dockerfile.dev__
-
-```
-FROM node:boron
-WORKDIR /usr/src/app
-COPY package.json .
-RUN npm install
-COPY . .
-EXPOSE 8000
-CMD [ "npm", "start" ]
-```
-
-__Dockerfile.prod
+__Dockerfile__, __Dockerfile.dev__, __Dockerfile.prod__
 
 ```
 FROM node:boron
@@ -155,12 +135,33 @@ services:
         #context: .
         context: ../../
         # DOCKERFILE PATH RELATIVE TO BUILD CONTEXT.
-        dockerfile: ./conf/docker/Dockerfile.dev
+        #dockerfile: ./conf/docker/Dockerfile.dev
+        dockerfile: ./conf/docker/Dockerfile
     ports:
        #MAPPING -> "HOST:CONTAINER"
-     - "49160:8080"
+     - "50000:8080"
     container_name: ttg_webapp_dev
     hostname: ttg_webapp_dev
+```
+
+__docker-compose.prod.yml__
+
+```
+version: '3'
+services:
+  prod_web:
+    # DEFINE BUILD CONTEXT.
+    build:
+        #context: .
+        context: ../../
+        # DOCKERFILE PATH RELATIVE TO BUILD CONTEXT.
+        # dockerfile: ./conf/docker/Dockerfile.prod
+        dockerfile: ./conf/docker/Dockerfile
+    ports:
+       #MAPPING -> "HOST:CONTAINER"
+     - "52000:8080"
+    container_name: ttg_webapp_prod
+    hostname: ttg_webapp_prod
 ```
 
 __docker-compose.network.yml__
@@ -189,23 +190,4 @@ networks:
             driver: default
             config:
                 - subnet: 10.0.0.0/8
-```
-
-__docker-compose.prod.yml__
-
-```
-version: '3'
-services:
-  prod_web:
-    # DEFINE BUILD CONTEXT.
-    build:
-        #context: .
-        context: ../../
-        # DOCKERFILE PATH RELATIVE TO BUILD CONTEXT.
-        dockerfile: ./conf/docker/Dockerfile.prod
-    ports:
-       #MAPPING -> "HOST:CONTAINER"
-     - "52000:8080"
-    container_name: ttg_webapp_prod
-    hostname: ttg_webapp_prod
 ```
