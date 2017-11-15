@@ -32,7 +32,7 @@
 
 ## Workflow Logic
 
-The project is run with (one of) the following command from the root dir ( ```.``` in the tree ):
+The project is run with (one of) the following commands from the root dir ( ```.``` in the tree ):
 ```
 $ docker-compose -f conf/docker/docker-compose.dev.yml up
 
