@@ -15,7 +15,6 @@ services:
      - "54000:8080"
     container_name: ttg_webapp_net
     hostname: ttg_webapp_net
-
 networks:
     net_net:
         ipam:

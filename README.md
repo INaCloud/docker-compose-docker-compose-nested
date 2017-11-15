@@ -108,7 +108,31 @@ app.listen(PORT, HOST);
 console.log(`Running on http://${HOST}:${PORT}`);
 ```
 
+__Dockerfile__
+
+```
+FROM node:boron
+WORKDIR /usr/src/app
+COPY package.json .
+RUN npm install
+COPY . .
+EXPOSE 8000
+CMD [ "npm", "start" ]
+```
+
 __Dockerfile.dev__
+
+```
+FROM node:boron
+WORKDIR /usr/src/app
+COPY package.json .
+RUN npm install
+COPY . .
+EXPOSE 8000
+CMD [ "npm", "start" ]
+```
+
+__Dockerfile.prod
 
 ```
 FROM node:boron
@@ -139,16 +163,32 @@ services:
     hostname: ttg_webapp_dev
 ```
 
-__Dockerfile.prod
+__docker-compose.network.yml__
 
 ```
-FROM node:boron
-WORKDIR /usr/src/app
-COPY package.json .
-RUN npm install
-COPY . .
-EXPOSE 8000
-CMD [ "npm", "start" ]
+version: '3'
+services:
+  net_web:
+    # DEFINE BUILD CONTEXT.
+    build:
+        #context: .
+        context: ../../
+        # DOCKERFILE PATH RELATIVE TO BUILD CONTEXT.
+        dockerfile: ./conf/docker/Dockerfile
+    networks:
+        net_net:
+            ipv4_address: 10.0.0.9
+    ports:
+       #MAPPING -> "HOST:CONTAINER"
+     - "54000:8080"
+    container_name: ttg_webapp_net
+    hostname: ttg_webapp_net
+networks:
+    net_net:
+        ipam:
+            driver: default
+            config:
+                - subnet: 10.0.0.0/8
 ```
 
 __docker-compose.prod.yml__
