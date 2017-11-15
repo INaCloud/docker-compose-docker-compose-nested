@@ -17,7 +17,7 @@
 |_____|_____server.js
 ```
 
-*File Descriptions*
+## File Descriptions
 
 - __README.md__ - The document you are reading.
 - __package.json__ - Defines the dependencies, entry point and startup script for the project.
