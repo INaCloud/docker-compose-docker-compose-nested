@@ -1,4 +1,4 @@
-# Using Dockerfiles with ```docker-compose``` using relative paths
+# Using Docker, Dockerfiles and ```docker-compose``` with relative paths
 
 ## Project Tree
 
